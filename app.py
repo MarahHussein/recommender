@@ -3,6 +3,7 @@ from ml_model import recommend_movies
 
 app = Flask(__name__)
 
+
 @app.route('/recommend', methods=['POST'])
 def recommend():
     data = request.get_json()
@@ -16,5 +17,7 @@ def recommend():
 
     return jsonify({"user_id": user_id, "movie_id": movie_id, "recommended_movies": recommended_movies})
 
+
 if __name__ == '__main__':
+
     app.run(debug=True)
