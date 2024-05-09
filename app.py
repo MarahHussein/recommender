@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from ml_model import recommend_movies
+from simple import get_recommendations
 
 app = Flask(__name__)
 
@@ -17,6 +18,18 @@ def recommend():
 
     return jsonify({"user_id": user_id, "movie_id": movie_id, "recommended_movies": recommended_movies})
 
+
+@app.route('/recommend_by_genre', methods=['POST'])
+def recommend_genres():
+    try:
+        # Extract genres from the request
+        data = request.json
+        user_genres = data.get('genres', [])
+        recommendations = get_recommendations(user_genres)
+        return jsonify(recommendations)
+    except Exception as e:
+        print(f'Error in API endpoint: {e}')
+        return jsonify([]), 500
 
 if __name__ == '__main__':
 
