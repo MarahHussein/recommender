@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, Request
 from pydantic import BaseModel
 from typing import List
-from ML_model import recommend_movies
+from ml_model import recommend_movies
 from simple_model import get_recommendations
 
 app = FastAPI()
